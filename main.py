@@ -2,7 +2,7 @@ import pandas as pd
 
 
 def ugly_json():
-    file = r'expound_response_single2.json'
+    file =r'data/expound_response_single2.json'
     df = pd.read_json(file)
     print(df)
     services = df['services']
