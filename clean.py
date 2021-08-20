@@ -1,9 +1,13 @@
 import pandas as pd
-
+import joblib
 
 def ugly_json():
     file = r'data/expound_response_single2.json'
     df = pd.read_json(file)
+    df_hash = joblib.hash(df, hash_name='sha1')
+    print(df_hash)
+
+
     services_df = df['services']
     locations_df = df['locations']
     organization_df = df.drop(columns=['services', 'locations'])
