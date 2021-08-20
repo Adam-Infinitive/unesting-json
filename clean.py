@@ -29,9 +29,7 @@ def flatten_json(nested_json, exclude_keys=['']):
                     for key in address.keys():
                         a = str(key + '_' + str(counter))
                         addr_dict.update({a: address[key]})
-                print(addr_dict)
                 for a in addr_dict:
-                    print(addr_dict[a])
                     flatten(addr_dict[a], name + a + '_')
             for a in x:
                 flatten(a, name)
@@ -46,4 +44,6 @@ services, locations, organization = ugly_json()
 
 un_nested_services = pd.DataFrame([flatten_json(x) for x in services['services']])
 un_nested_locations = pd.DataFrame([flatten_json(x) for x in locations['locations']])
-print('breakpoint')
+print(un_nested_locations.head())
+print(un_nested_services.head())
+print(organization.head())
