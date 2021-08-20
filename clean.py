@@ -25,12 +25,16 @@ def flatten_json(nested_json, exclude_keys=['']):
                 counter = 0
                 addr_dict = {}
                 for address in x:
+                    '''
+                    x: list of dictionaries containing address details
+                    address: dictionary containing address details
+                    '''
                     counter += 1
-                    for key in address.keys():
+                    for key in address:
                         a = str(key + '_' + str(counter))
                         addr_dict.update({a: address[key]})
-                for a in addr_dict:
-                    flatten(addr_dict[a], name + a + '_')
+                for key in addr_dict:
+                    flatten(addr_dict[key], name + key + '_')
             for a in x:
                 flatten(a, name)
         else:
