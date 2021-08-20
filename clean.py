@@ -6,9 +6,10 @@ def ugly_json():
     df = pd.read_json(file)
     services_df = df['services']
     locations_df = df['locations']
+    organization_df = df.drop(columns=['services', 'locations'])
     services_dict = dict({'services': services_df})
     locations_dict = dict({'locations': locations_df})
-    return services_dict, locations_dict
+    return services_dict, locations_dict, organization_df
 
 
 def flatten_json(nested_json, exclude_keys=['']):
@@ -41,7 +42,7 @@ def flatten_json(nested_json, exclude_keys=['']):
     return flattened
 
 
-services, locations = ugly_json()
+services, locations, organization = ugly_json()
 
 un_nested_services = pd.DataFrame([flatten_json(x) for x in services['services']])
 un_nested_locations = pd.DataFrame([flatten_json(x) for x in locations['locations']])
