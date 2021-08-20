@@ -26,7 +26,7 @@ def hash(obj):
 
     # df_full=pd.read_json(full)
     # # print(df_full)
-    obj_df = pd.read_dict(obj)
+    obj_df = pd.read(obj)
 
     df_hash=joblib.hash(obj_df, hash_name='sha1')
     print(df_hash)
